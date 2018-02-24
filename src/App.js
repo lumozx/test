@@ -3,10 +3,11 @@ import logo from './logo.svg';
 import './App.css';
 import Test from './test';
 import Test2 from './test2';
-
+import { connect } from 'react-redux';
 class Clock extends Component{
   constructor(props) {
     super(props);
+    console.log(props)
 //接受props,但此刻并不利用
     this.state = {date: new Date(),isT:true};
     // this.hand = this.hand.bind(this)//绑定this，把this传入进去,这是一种方法，还有一种方法，hand后面加()，并使用箭头函数，第三种方法是在click的时候使用箭头函数，自动传递this
@@ -19,6 +20,7 @@ class Clock extends Component{
     );
   }
   hand=()=>{
+
 //setState第一种使用方式是传入新的对象，简单粗暴，但无法用于异步运算，因此传入一个函数，有两个参数，第一个是state，第二个是props，return一个对象，是新对象
     this.setState((p,s) =>({
       isT:!p.isT
@@ -43,6 +45,17 @@ class Clock extends Component{
       )
   }
 }
+
+function select(state) {
+  // console.log(state)
+    return {
+      count : state.count,
+    }
+}
+
+var Clock1 =  connect(select)(Clock);;
+
+
 class CustomTextInput extends React.Component {
   // constructor(props) {
   //   super(props);
@@ -69,13 +82,18 @@ class CustomTextInput extends React.Component {
 }
 
 class App extends Component {
+    constructor(props) {
+    super(props);
+//接受props,但此刻并不利用
+    // console.log(props)
+  }
   render() {
     return (//加括号为了让他成为表达式
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
  
-          <Clock name='1'/>
+          <Clock1 name='1'/>
 
         </header>
         <p className="App-intro">
