@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 class Clock extends Component{
   constructor(props) {
     super(props);
-    console.log(props)
+    
 //接受props,但此刻并不利用
     this.state = {date: new Date(),isT:true};
     // this.hand = this.hand.bind(this)//绑定this，把this传入进去,这是一种方法，还有一种方法，hand后面加()，并使用箭头函数，第三种方法是在click的时候使用箭头函数，自动传递this
@@ -20,7 +20,8 @@ class Clock extends Component{
     );
   }
   hand=()=>{
-
+    console.log(this.props)
+this.props.dispatch({type:'one'})
 //setState第一种使用方式是传入新的对象，简单粗暴，但无法用于异步运算，因此传入一个函数，有两个参数，第一个是state，第二个是props，return一个对象，是新对象
     this.setState((p,s) =>({
       isT:!p.isT

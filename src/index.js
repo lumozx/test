@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 // const ele = React.createElement('h1',{className:'aaaa'},'what');
 // console.log(ele)
 // ele以及<APP/>都是react元素，实质上是一个对象，APP不是react元素
-// store.subscribe(()=>console.log(store.getState()))
+store.subscribe(()=>console.log(store.getState()))
 
 store.dispatch({type:'one'})
 // store.dispatch({type:'two'})

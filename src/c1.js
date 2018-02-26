@@ -16,7 +16,7 @@ class C1 extends Component{
 }
 
 function select(state) {
-	console.log(state)
+	// console.log(state)
     return {
       count : state.count,
     }
