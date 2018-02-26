@@ -21,7 +21,9 @@ class Clock extends Component{
   }
   hand=()=>{
     console.log(this.props)
-this.props.dispatch({type:'one'})
+    this.props.onClick()
+    // this.props.two()
+// this.props.dispatch({type:'one'})
 //setState第一种使用方式是传入新的对象，简单粗暴，但无法用于异步运算，因此传入一个函数，有两个参数，第一个是state，第二个是props，return一个对象，是新对象
     this.setState((p,s) =>({
       isT:!p.isT
@@ -54,8 +56,20 @@ function select(state) {
     }
 }
 
-var Clock1 =  connect(select)(Clock);;
+function mapDispatchToProps(dispatch, ownProps){
+  // console.log(ownProps)ownProps是容器的props
+  return {
+    onClick: () => {
+      dispatch({type: 'one'});
+    },
+    two:()=>{
+       dispatch({type: 'two'});
+    }
+  };
+}
 
+var Clock1 =  connect(select,mapDispatchToProps)(Clock);;
+//第二个参数可以省略，在组件里面自由发挥，亦或者在此映射，比如，这个就是映射到onClick上，用的时候不用再props.dispath(XXXX)，而是直接使用onclick
 
 class CustomTextInput extends React.Component {
   // constructor(props) {

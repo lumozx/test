@@ -37,6 +37,11 @@ function count1(state=initialState,action) {
 const all = combineReducers({
     count,count1
 });
-let createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
+// const store = createStore(
+//   all,
+//   applyMiddleware(thunkMiddleware)
+// ); 
+//上面跟下面是等价的
+let createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);//挂载中间件
  const store = createStoreWithMiddleware(all);
 export default store;
