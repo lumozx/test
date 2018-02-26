@@ -34,9 +34,9 @@ function count1(state=initialState,action) {
 	}
 }
 //必须要default
-const ally = combineReducers({
+const all = combineReducers({
     count,count1
 });
 let createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
- const store = createStoreWithMiddleware(ally);
+ const store = createStoreWithMiddleware(all);
 export default store;
