@@ -13,9 +13,7 @@ class C2 extends Component{
 	
 		<div>
 				<div>this is C2</div>
-				        <Prompt 
-
-          message="数据尚未保存，确定离开？" />
+				        <Prompt    message="数据尚未保存，确定离开？" />
 				<button onClick={this.gog}>ggg</button>
 			       <Link to='/roster/a'>Schedule</Link>
 			        <Route path='/roster/a' component={C1}/>

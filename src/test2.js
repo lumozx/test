@@ -24,4 +24,5 @@ class Test2 extends Component{
   }
 }
 
+//route是重点渲染，link不过是a链接，route匹配链接，然后渲染对应的模板，去掉switch之后会有复数个C1，exact是完全匹配
 export default Test2;
