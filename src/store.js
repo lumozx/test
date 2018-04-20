@@ -11,8 +11,8 @@ const initialState = {
 
 function count(state=initialState.count,action) {
 	switch(action.type){
-		case 'one':
-		return state +1;
+        case 'one':
+        return state +1;
 		case 'two':
 		return state -1;
 		case 'three':
@@ -21,10 +21,10 @@ function count(state=initialState.count,action) {
             return state;
 	}
 }
-function count1(state=initialState,action) {
+function count1(state=initialState.count,action) {
 	switch(action.type){
 		case 'one':
-		return state +1;
+		return state +2 ;
 		case 'two':
 		return state -1;
 		case 'three':
@@ -33,6 +33,7 @@ function count1(state=initialState,action) {
             return state;
 	}
 }
+//count 和count1是两个store,active可以相同，但对于简单数值来说互不影响，但对于复杂类型，用到了push等方法，那么修改一个，其余都会受到影响，因此使用assign的拷贝功能，return 的是新状态，将作为下一次的state
 //必须要default
 const all = combineReducers({
     count,count1

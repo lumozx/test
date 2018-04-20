@@ -34,7 +34,7 @@ class Tem extends Component{
      </p>
         <input type="text" value={temp} onChange={this.handlenchange}/>
      </div>
-      )
+      )//onchange 就是tochange,就是下面的this.fc,重新设置目标的标识f还是c，重新设置输入数据，重新设置的时候，每触发一次change，就触发一次setstate,就重新刷新一次dom,就触发里面的render，就会重新计算一次，就会更新temp，就会更新这两个组件，输入的值也会更新，只不过更新的是同一个值，看不出来而已
   }
 }
 class Zong extends Component{

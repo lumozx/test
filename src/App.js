@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 class Clock extends Component{
   constructor(props) {
     super(props);
-    
 //接受props,但此刻并不利用
     this.state = {date: new Date(),isT:true};
     // this.hand = this.hand.bind(this)//绑定this，把this传入进去,这是一种方法，还有一种方法，hand后面加()，并使用箭头函数，第三种方法是在click的时候使用箭头函数，自动传递this
@@ -20,17 +19,24 @@ class Clock extends Component{
     );
   }
   hand=()=>{
-    console.log(this.props)
+    // console.log(this.props)
     this.props.onClick()
     // this.props.two()
 // this.props.dispatch({type:'one'})
 //setState第一种使用方式是传入新的对象，简单粗暴，但无法用于异步运算，因此传入一个函数，有两个参数，第一个是state，第二个是props，return一个对象，是新对象
-    this.setState((p,s) =>({
-      isT:!p.isT
-    }))
+    // this.setState((p,s) =>({
+    //   isT:!p.isT
+    // }))
+    this.setState(function(ps,p) {
+// ps为前一个状态的state,p为props,ps可以通过connect传进来,props有可能是store
+console.log(ps,p)
+      return{
+        isT:!ps.isT
+      }
+    })
   }
   componentWillUnmount() {
-    clearInterval(this.timerID);
+    clearInterval(this.s);
   }
   tick(){
     this.setState({
@@ -51,13 +57,17 @@ class Clock extends Component{
 
 function select(state) {
   // console.log(state)
+  //这个state是仓库的state，就是store！然后把仓库的映射到count2上，然后connect，然后组件通过props取到
     return {
       count : state.count,
+      s : state
     }
 }
 
 function mapDispatchToProps(dispatch, ownProps){
-  // console.log(ownProps)ownProps是容器的props
+  // console.log(ownProps)
+  // ownProps是容器的props
+  //类似state的绑定，把操作绑在onclick或者two上，通过props取到，执行相应的操作，用来修改store
   return {
     onClick: () => {
       dispatch({type: 'one'});
@@ -71,6 +81,7 @@ function mapDispatchToProps(dispatch, ownProps){
 var Clock1 =  connect(select,mapDispatchToProps)(Clock);;
 //第二个参数可以省略，在组件里面自由发挥，亦或者在此映射，比如，这个就是映射到onClick上，用的时候不用再props.dispath(XXXX)，而是直接使用onclick
 
+
 class CustomTextInput extends React.Component {
   // constructor(props) {
   //   super(props);
@@ -79,6 +90,7 @@ class CustomTextInput extends React.Component {
 
   focus=()=> {
     // 直接使用原生 API 使 text 输入框获得焦点
+    //因为ref，this.textInput ==  <input  type="text" defaultValue='66'     ref={(e) => { this.textInput = e; }} />
     this.textInput.focus();
     console.log(this.textInput.value)
   }

@@ -23,6 +23,6 @@ class Test2 extends Component{
       )
   }
 }
-
+//react的路由匹配是根据path匹配的，与vue的思路是不同的，vue虽然有命名视图，但是建立在同一个children下用来判断不同的视图对接不同的模板的，而react不用明明路由，而是在合适的组件里面放入视图，指定模板
 //route是重点渲染，link不过是a链接，route匹配链接，然后渲染对应的模板，去掉switch之后会有复数个C1，exact是完全匹配
 export default Test2;
